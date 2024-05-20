@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const User = require("../models/userModel");
+
 require("dotenv").config();
 
 const connect = async () => {
@@ -10,6 +12,27 @@ const connect = async () => {
     );
 };
 
+const disconnect = async () => {
+  return await mongoose
+    .disconnect()
+    .then("Database Disconnect.")
+    .catch((error) =>
+      console.log("Database Disconnection Failed! ", error.message)
+    );
+};
+
+// obj: { email: req.body.email}
+const findUser = async (obj) => {
+  return await User.findOne(obj);
+};
+
+const saveUser = async (newUser) => {
+  return await newUser.save();
+};
+
 module.exports = {
   connect,
+  disconnect,
+  saveUser,
+  findUser,
 };
