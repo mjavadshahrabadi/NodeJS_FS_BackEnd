@@ -4,26 +4,16 @@ const User = require("../models/userModel");
 require("dotenv").config();
 
 const connect = async () => {
-  return await mongoose
-    .connect(process.env.MONGO_DB)
-    .then(() => console.log("Database Connected."))
-    .catch((error) =>
-      console.log("Failed Database Connection! ", error.message)
-    );
+  return await mongoose.connect(process.env.MONGO_DB);
 };
 
 const disconnect = async () => {
-  return await mongoose
-    .disconnect()
-    .then("Database Disconnect.")
-    .catch((error) =>
-      console.log("Database Disconnection Failed! ", error.message)
-    );
+  return await mongoose.disconnect();
 };
 
 // obj: { email: req.body.email}
 const findUser = async (obj) => {
-  return await User.findOne(obj);
+  return User.findOne(obj).exec();
 };
 
 const saveUser = async (newUser) => {
