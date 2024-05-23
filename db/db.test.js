@@ -41,8 +41,12 @@ describe("User Test Unit", () => {
         console.log(user);
         expect(user.lastName).toEqual("shahrabadi");
       })
-      .catch((error) => {
+      .catch(async (error) => {
         console.log("error:", error.message);
       });
   });
+});
+
+afterAll(async () => {
+  await disconnect();
 });

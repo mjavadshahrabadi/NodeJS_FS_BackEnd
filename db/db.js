@@ -8,7 +8,7 @@ const connect = async () => {
 };
 
 const disconnect = async () => {
-  return await mongoose.disconnect();
+  return await mongoose.connection.close();
 };
 
 // obj: { email: req.body.email}
