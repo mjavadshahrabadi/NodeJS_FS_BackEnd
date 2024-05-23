@@ -46,7 +46,3 @@ describe("User Test Unit", () => {
       });
   });
 });
-
-afterAll(async () => {
-  return await disconnect();
-});
